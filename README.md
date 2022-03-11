@@ -9,8 +9,6 @@ Appreciate that the code will meet the requirements:
 4. Use Java 11 or above if possible (advantage option)
 5. Use some new feature from Java8 or above if possible (advantage option)
 ##### ** IMPORTANT **
-Please do NOT put any wording onto github related to HSBC as cyber security issue,
-otherwise it would be considered as FAILED the code test.
 For a given string that only contains alphabet characters a-z, if 3 or more consecutive
 characters are identical, remove them from the string. Repeat this process until
 there is no more than 3 identical characters sitting besides each other.
