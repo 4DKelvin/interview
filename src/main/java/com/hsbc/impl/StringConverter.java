@@ -1,11 +1,17 @@
-package com.hsbc;
+package com.hsbc.impl;
+
+import com.hsbc.IReplacementHandler;
+import com.hsbc.IStringConverter;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
+/**
+ * @author 4dkelvin
+ */
 public class StringConverter implements IStringConverter {
 
     public final static String PLACEHOLDER = "%";
@@ -39,19 +45,15 @@ public class StringConverter implements IStringConverter {
             Matcher mat = getMatcher(input);
             while (mat.find()) {
                 //命中将替换为指定数据
-                inputList.replaceAll((e) -> {
-                    int currentIndex = inputList.indexOf(e);
+                Stream.iterate(0, i -> i + 1).limit(inputList.size()).forEach(index -> {
                     //从替换器获取替换的值
                     String replacement = handler == null ? PLACEHOLDER : handler.handle(input, mat.start(), mat.end());
-                    if (currentIndex == mat.start()) {
+                    if (index == mat.start()) {
                         //替换为目标值
-                        return replacement;
-                    } else if (currentIndex > mat.start() && currentIndex < mat.end()) {
+                        inputList.set(index, replacement);
+                    } else if (index > mat.start() && index < mat.end()) {
                         //替换占位符
-                        return PLACEHOLDER;
-                    } else {
-                        //未命中返回原始值
-                        return e;
+                        inputList.set(index, PLACEHOLDER);
                     }
                 });
             }
@@ -68,30 +70,5 @@ public class StringConverter implements IStringConverter {
     @Override
     public String convert(String input) {
         return convert(input, null);
-    }
-
-    public static void main(String[] args) {
-
-        IStringConverter converter = new StringConverter();
-
-        String input = "aabcccbbad".toLowerCase(Locale.ROOT);
-        System.out.println("\r\nAnswer Question #1:");
-        System.out.printf("Input: \r\n\t-> %s%n", input);
-        System.out.print("Output:");
-        converter.convert(input);
-
-
-        System.out.println("\r\nAnswer Question #2:");
-        input = "abcccbad".toLowerCase(Locale.ROOT);
-        System.out.printf("Input: \r\n\t-> %s%n", input);
-        System.out.print("Output:");
-        //获取命中数据前一个值为替换值
-        converter.convert(input, (source, start, end) -> {
-            //转Ascii码并获取Ascii上一个值
-            int ascii = source.toCharArray()[start] - 1;
-            //合法的[a-z]Ascii码则返回
-            return ascii >= 97 && ascii <= 122 ? String.valueOf((char) ascii) : "";
-        });
-
     }
 }
