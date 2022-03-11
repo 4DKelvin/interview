@@ -1,9 +1,2 @@
-package com.hsbc;
-
-public class interview {
-
-    public static void main(String[] args){
-
-    }
-
+package com.hsbc;public class interview {
 }
