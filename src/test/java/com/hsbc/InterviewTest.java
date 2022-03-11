@@ -8,14 +8,14 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author 4dkelvin
  */
-class interviewTest {
+class InterviewTest {
 
-    private interview target;
+    private Interview target;
 
     @BeforeEach
     void setUp() {
 
-        target = new interview();
+        target = new Interview();
     }
 
 

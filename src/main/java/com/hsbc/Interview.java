@@ -7,11 +7,11 @@ import java.util.Locale;
 /**
  * @author 4dkelvin
  */
-public class interview {
+public class Interview {
 
     private IStringConverter converter;
 
-    public interview() {
+    public Interview() {
         converter = new StringConverter();
     }
 
