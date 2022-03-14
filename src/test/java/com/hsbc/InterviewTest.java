@@ -27,11 +27,20 @@ class InterviewTest {
         assertEquals("d", target.convertToEmpty("aabcccbbad"));
     }
 
+
+    /**
+     * 测试去重结果期望目标为D(超过3位重复数据的时候)
+     */
+    @Test
+    void convertTest2() {
+        assertEquals("d", target.convertToEmpty("aabccccbbad"));
+    }
+
     /**
      * 测试替换字符的结果期望目标为D
      */
     @Test
-    void convertTest2() {
+    void convertTest3() {
         assertEquals("d", target.convertToAsciiBefore("abcccbad"));
     }
 
@@ -39,7 +48,7 @@ class InterviewTest {
      * 测试去重结果期望目标为zixuuqxyyx
      */
     @Test
-    void convertTest3() {
+    void convertTest4() {
         assertEquals("zixuuqxyyx", target.convertToEmpty("zixuuqxyyzzzx"));
     }
 
@@ -47,7 +56,7 @@ class InterviewTest {
      * 测试去重结果期望目标为13asdoinzxn
      */
     @Test
-    void convertTest4() {
+    void convertTest5() {
         assertEquals("13asdoinzxn", target.convertToAsciiBefore("12223asdoinzxn"));
     }
 
@@ -55,7 +64,7 @@ class InterviewTest {
      * 测试去重结果期望目标为空
      */
     @Test
-    void convertTest5() {
+    void convertTest6() {
         assertEquals("", target.convertToEmpty("         "));
     }
 }

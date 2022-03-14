@@ -24,7 +24,7 @@ public class StringConverter implements IStringConverter {
      * @return 正则命中器
      */
     protected Matcher getMatcher(String input) {
-        Pattern pat = Pattern.compile("(.+)\\1{2}");
+        Pattern pat = Pattern.compile("(.+)\\1{2,}");
         return pat.matcher(input);
     }
 
